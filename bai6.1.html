@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 6.1 - Đổi màu bằng JavaScript</title>
+  <style>
+    #doimau {
+      padding: 10px;
+      border: 1px solid gray;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .xanh {
+      background-color: lightblue;
+    }
+    <style>
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.back-button:hover {
+  background-color: #2980b9;
+}
+</style>
+
+<a href="index.html" class="back-button">🏠 Trang Chủ</a>
+
+  </style>
+</head>
+<body>
+  <div id="doimau">đổi màu tôi đi</div>
+  <br>
+  <button onclick="doiMau()">xanh</button>
+
+  <script>
+    function doiMau() {
+      document.getElementById("doimau").classList.toggle("xanh");
+    }
+  </script>
+</body>
+</html>

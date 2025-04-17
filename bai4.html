@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Đăng Ký</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      width: 460px;
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin: 30px auto;
+    }
+
+    label {
+      display: inline-block;
+      width: 100px;
+      margin-top: 10px;
+      vertical-align: top;
+    }
+
+    input, select, textarea {
+      margin-top: 10px;
+    }
+
+    .form-title {
+      text-align: center;
+      font-size: 20px;
+      color: purple;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .inline-group {
+      display: inline-block;
+    }
+
+    .date-row select {
+      margin-right: 10px;
+    }
+
+    .checkbox-group input {
+      margin-right: 5px;
+      margin-left: 10px;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .btn-group {
+      margin-top: 15px;
+    }
+    <style>
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.back-button:hover {
+  background-color: #2980b9;
+}
+</style>
+
+<a href="index.html" class="back-button">🏠 Trang Chủ</a>
+
+
+  </style>
+</head>
+<body>
+
+<form id="registrationForm" onsubmit="return validateForm()">
+  <div class="form-title">FORM ĐĂNG KÝ</div>
+
+  <label for="lastName">Họ:</label>
+  <input type="text" id="lastName"><br>
+
+  <label for="firstName">Tên:</label>
+  <input type="text" id="firstName"><br>
+
+  <label>Ngày sinh:</label>
+  <div class="inline-group date-row">
+    Ngày
+    <select id="day">
+      <option value="" selected>--Ngày--</option>
+      <script>
+        for (let i = 1; i <= 31; i++) {
+          document.write(`<option value="${i}">${i}</option>`);
+        }
+      </script>
+    </select>
+
+    Tháng
+    <select id="month">
+      <option value="" selected>--Tháng--</option>
+      <script>
+        for (let i = 1; i <= 12; i++) {
+          document.write(`<option value="${i}">${i}</option>`);
+        }
+      </script>
+    </select>
+
+    Năm
+    <select id="year">
+      <option value="" selected>--Năm--</option>
+      <script>
+        for (let i = 1900; i <= 2025; i++) {
+          document.write(`<option value="${i}">${i}</option>`);
+        }
+      </script>
+    </select>
+  </div><br>
+
+  <label>Giới tính:</label>
+  <input type="radio" name="gender" value="Nam" checked>Nam
+  <input type="radio" name="gender" value="Nữ">Nữ<br>
+
+  <label for="phone">SĐT:</label>
+  <input type="text" id="phone"><br>
+
+  <label>Sở thích:</label>
+  <div class="inline-group checkbox-group">
+    <input type="checkbox" value="Đọc sách">Đọc sách
+    <input type="checkbox" value="Xem phim">Xem phim
+    <input type="checkbox" value="Nghe nhạc">Nghe nhạc
+    <input type="checkbox" value="Đá bóng">Đá bóng
+  </div><br>
+
+  <label>Khác:</label>
+  <textarea rows="2" cols="30"></textarea><br>
+
+  <div class="btn-group">
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+  </div>
+
+  <p id="errorMsg" class="error"></p>
+</form>
+
+<script>
+function validateForm() {
+  const ho = document.getElementById("lastName").value.trim();
+  const ten = document.getElementById("firstName").value.trim();
+  const sdt = document.getElementById("phone").value.trim();
+  const day = document.getElementById("day").value;
+  const month = document.getElementById("month").value;
+  const year = document.getElementById("year").value;
+  let error = "";
+
+  if (ho === "" || ten === "" || sdt === "") {
+    error = "Vui lòng nhập đầy đủ Họ, Tên và Số điện thoại.";
+  } else if (!/^\d{10}$/.test(sdt)) {
+    error = "Số điện thoại phải gồm đúng 10 chữ số.";
+  } else if (day === "" || month === "" || year === "") {
+    error = "Vui lòng chọn đầy đủ Ngày, Tháng, Năm sinh.";
+  }
+
+  document.getElementById("errorMsg").innerText = error;
+  return error === "";
+}
+</script>
+
+</body>
+</html>

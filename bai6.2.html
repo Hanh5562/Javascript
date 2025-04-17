@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial;
+      padding: 40px;
+    }
+    table {
+      margin-bottom: 30px;
+    }
+    td {
+      padding: 5px;
+    }
+    input[type="text"] {
+      width: 50px;
+    }
+    .history {
+      font-weight: bold;
+    }
+    .highlight {
+      color: red;
+    }
+    button {
+  padding: 3px 8px;
+  font-weight: bold;
+}
+<style>
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.back-button:hover {
+  background-color: #2980b9;
+}
+</style>
+
+<a href="index.html" class="back-button">🏠 Trang Chủ </a>
+
+  </style>
+</head>
+<body>
+<h4>các phép toán</h4>
+<table>
+  <tr>
+    <td>phép cộng</td>
+    <td><input type="text" id="cong1"></td>
+    <td>+</td>
+    <td><input type="text" id="cong2"></td>
+    <td><button onclick="tinhToan('cong')">=</button></td>
+    <td><input type="text" id="ketqua1" readonly></td>
+  </tr>
+  <tr>
+    <td>phép trừ</td>
+    <td><input type="text" id="tru1"></td>
+    <td>-</td>
+    <td><input type="text" id="tru2"></td>
+    <td><button onclick="tinhToan('tru')">=</button></td>
+    <td><input type="text" id="ketqua2" readonly></td>
+  </tr>
+  <tr>
+    <td>phép nhân</td>
+    <td><input type="text" id="nhan1"></td>
+    <td>*</td>
+    <td><input type="text" id="nhan2"></td>
+    <td><button onclick="tinhToan('nhan')">=</button></td>
+    <td><input type="text" id="ketqua3" readonly></td>
+  </tr>
+  <tr>
+    <td>phép chia</td>
+    <td><input type="text" id="chia1"></td>
+    <td>/</td>
+    <td><input type="text" id="chia2"></td>
+    <td><button onclick="tinhToan('chia')">=</button></td>
+    <td><input type="text" id="ketqua4" readonly></td>
+  </tr>
+</table>
+
+<h4>Các phép toán vừa thực hiện</h4>
+<div id="history" class="history"></div>
+
+<script>
+  function tinhToan(phep) {
+    let so1, so2, kq, pheptoan = "", chuoi = "";
+    const historyDiv = document.getElementById("history");
+
+    // Xoá màu cũ
+    const spans = historyDiv.querySelectorAll("span");
+    spans.forEach(span => span.classList.remove("highlight"));
+
+    if (phep === 'cong') {
+      so1 = Number(document.getElementById("cong1").value);
+      so2 = Number(document.getElementById("cong2").value);
+      kq = so1 + so2;
+      document.getElementById("ketqua1").value = kq;
+      pheptoan = "PHÉP CỘNG";
+      chuoi = `${so1} + ${so2} = ${kq}`;
+    } else if (phep === 'tru') {
+      so1 = Number(document.getElementById("tru1").value);
+      so2 = Number(document.getElementById("tru2").value);
+      kq = so1 - so2;
+      document.getElementById("ketqua2").value = kq;
+      pheptoan = "PHÉP TRỪ";
+      chuoi = `${so1} - ${so2} = ${kq}`;
+    } else if (phep === 'nhan') {
+      so1 = Number(document.getElementById("nhan1").value);
+      so2 = Number(document.getElementById("nhan2").value);
+      kq = so1 * so2;
+      document.getElementById("ketqua3").value = kq;
+      pheptoan = "PHÉP NHÂN";
+      chuoi = `${so1} * ${so2} = ${kq}`;
+    } else if (phep === 'chia') {
+      so1 = Number(document.getElementById("chia1").value);
+      so2 = Number(document.getElementById("chia2").value);
+      kq = so2 !== 0 ? (so1 / so2) : "Không chia được";
+      document.getElementById("ketqua4").value = kq;
+      pheptoan = "PHÉP CHIA";
+      chuoi = `${so1} / ${so2} = ${kq}`;
+    }
+
+    // Thêm phép tính mới với màu đỏ
+    const span = document.createElement("span");
+    span.innerHTML = `<span class="highlight">${pheptoan}<br>${chuoi}</span> &nbsp;&nbsp;`;
+    historyDiv.appendChild(span);
+  }
+</script>
+
+</body>
+</html>
